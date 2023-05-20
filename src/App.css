@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto+Condensed&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto Condensed";
+  background: url(./assets/background-image.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: #106a7e;
+  border: 1px solid black;
+  box-shadow: 0px 0px 3px 5px black;
+  gap: 10px;
+  padding: 15px;
+}
+
+.container {
+  min-height: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex-wrap: wrap;
+}
+
+label,
+.label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FEF6FB;
+  word-spacing: 2px;
+  letter-spacing: 1px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 12px;
+  background-color: rgb(96, 8, 8);
+  box-shadow: 0 3px #f1d0d0;
+  color: #FEF6FB;
+  border: none;
+}
+
+button:active {
+  transform: translate(0, 3px);
+  box-shadow: 0 1px #F6FFDE;
+}
+
+.accentColor {
+  accent-color: black;
+  margin-right: 3px;
+}
+
+.gapping {
+  margin-right: 10px;
+}
+
+textarea {
+  width: -webkit-fill-available;
+}
+
+@media screen and (max-width: 500px) {
+
+  .main {
+    width: 90vw;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
