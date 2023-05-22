@@ -23,7 +23,7 @@ const App = () => {
     contact: "",
     email: "",
     aadhar: "",
-    educationChecked: {},
+    educationChecked: "",
     address: "",
   });
 
