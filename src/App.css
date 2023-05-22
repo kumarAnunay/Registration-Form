@@ -13,25 +13,29 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   place-content: center;
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  background-color: #106a7e;
-  border: 1px solid black;
+  width: 70vw;
+  /* background-color: #0A4D68; */
+  background: url(https://www.womenbuildingaustralia.com.au/sites/default/files/images/Poly_BG_Grad%20%281%29_0_1.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid black;
   box-shadow: 0px 0px 3px 5px black;
-  gap: 10px;
+  border-radius: 5px;
   padding: 15px;
 }
 
 .container {
-  min-height: 25px;
+  margin-bottom: 8px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr;
   flex-wrap: wrap;
 }
 
@@ -51,7 +55,7 @@ label,
 
 button {
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 8px 15px;
   border-radius: 12px;
   background-color: rgb(96, 8, 8);
   box-shadow: 0 3px #f1d0d0;
@@ -66,18 +70,41 @@ button:active {
 
 .accentColor {
   accent-color: black;
-  margin-right: 3px;
+  margin-right: 4px;
 }
 
 .gapping {
   margin-right: 10px;
 }
 
-textarea {
-  width: -webkit-fill-available;
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
+input,
+select {
+  padding: 6px;
+  border: 2px solid #bbb9b9;
+  border-radius: 4px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgb(96, 8, 8);
+}
+
+textarea {
+  width: -webkit-fill-available;
+  border-radius: 4px;
+  font-size: 16px;
+  border: 2px solid #bbb9b9;
+  outline: none;
+}
+
+@media screen and (max-width: 650px) {
 
   .main {
     width: 90vw;
@@ -86,5 +113,11 @@ textarea {
   .container {
     display: flex;
     flex-direction: column;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 14px;
   }
 }

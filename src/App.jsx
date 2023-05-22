@@ -3,7 +3,7 @@ import "./App.css";
 
 function Input(props) {
   const { onChange, ...restProps } = props;
-  return <input {...restProps} onChange={onChange || ""} />;
+  return <input {...restProps} onChange={onChange} />;
 }
 
 function Button(props) {
@@ -19,26 +19,13 @@ const App = () => {
     motherName: "",
     dob: "",
     gender: "",
+    category: "",
     contact: "",
     email: "",
     aadhar: "",
-    education: "",
+    educationChecked: {},
     address: "",
   });
-
-  const {
-    firstName,
-    lastName,
-    fatherName,
-    motherName,
-    dob,
-    gender,
-    contact,
-    email,
-    aadhar,
-    education,
-    address,
-  } = formDetails;
 
   const formDetailsHandler = (event) => {
     const field = event.target.name;
@@ -48,9 +35,26 @@ const App = () => {
       ...formDetails,
       [field]: value,
     });
+
+    console.log(field, " : ", value);
   };
 
   const formValidation = () => {};
+
+  const {
+    firstName,
+    lastName,
+    fatherName,
+    motherName,
+    dob,
+    gender,
+    category,
+    contact,
+    email,
+    aadhar,
+    educationChecked,
+    address,
+  } = formDetails;
 
   return (
     <div className="main">
@@ -62,6 +66,7 @@ const App = () => {
           name="firstName"
           onChange={formDetailsHandler}
           value={firstName}
+          title="Enter your first name"
         />
       </div>
 
@@ -73,6 +78,7 @@ const App = () => {
           name="lastName"
           onChange={formDetailsHandler}
           value={lastName}
+          title="Enter your last name"
         />
       </div>
 
@@ -84,6 +90,7 @@ const App = () => {
           id="fatherName"
           onChange={formDetailsHandler}
           value={fatherName}
+          title="Enter your father's name"
         />
       </div>
 
@@ -95,6 +102,7 @@ const App = () => {
           id="motherName"
           onChange={formDetailsHandler}
           value={motherName}
+          title="Enter your mother's name"
         />
       </div>
 
@@ -106,6 +114,7 @@ const App = () => {
           id="dob"
           onChange={formDetailsHandler}
           value={dob}
+          title="Enter your date-of-birth"
         />
       </div>
 
@@ -115,8 +124,9 @@ const App = () => {
           <Input
             type="radio"
             name="gender"
-            value={gender}
+            value="male"
             id="male"
+            checked={gender === "male"}
             onChange={formDetailsHandler}
             className="accentColor"
           />
@@ -127,13 +137,88 @@ const App = () => {
           <Input
             type="radio"
             name="gender"
-            value={gender}
+            value="female"
             id="female"
+            checked={gender === "female"}
             onChange={formDetailsHandler}
             className="accentColor"
           />
           <label htmlFor="female" className="gapping">
             Female
+          </label>
+        </div>
+      </div>
+
+      <div className="container">
+        <label htmlFor="category">Category: </label>
+        <select
+          name="category"
+          id="category"
+          value={category}
+          onChange={formDetailsHandler}
+          title="Select your category"
+        >
+          <option value="null"></option>
+          <option value="general">General</option>
+          <option value="obc">OBC</option>
+          <option value="sc">SC</option>
+          <option value="st">ST</option>
+        </select>
+      </div>
+
+      <div className="container">
+        <div className="label">Education: </div>
+        <div>
+          <Input
+            type="checkbox"
+            name="education"
+            value="10"
+            id="10"
+            // checked={educationChecked}
+            onChange={formDetailsHandler}
+            className="accentColor"
+          />
+          <label htmlFor="10" className="gapping">
+            10
+          </label>
+
+          <Input
+            type="checkbox"
+            name="education"
+            value="12"
+            id="12"
+            // checked={educationChecked}
+            onChange={formDetailsHandler}
+            className="accentColor"
+          />
+          <label htmlFor="12" className="gapping">
+            12
+          </label>
+
+          <Input
+            type="checkbox"
+            name="education"
+            value="ug"
+            id="ug"
+            // checked={educationChecked}
+            onChange={formDetailsHandler}
+            className="accentColor"
+          />
+          <label htmlFor="ug" className="gapping">
+            UG
+          </label>
+
+          <Input
+            type="checkbox"
+            name="education"
+            value="pg"
+            id="pg"
+            // checked={educationChecked}
+            onChange={formDetailsHandler}
+            className="accentColor"
+          />
+          <label htmlFor="pg" className="gapping">
+            PG
           </label>
         </div>
       </div>
@@ -148,6 +233,7 @@ const App = () => {
           maxLength="10"
           onChange={formDetailsHandler}
           value={contact}
+          title="Enter your phone number"
         />
       </div>
 
@@ -159,6 +245,7 @@ const App = () => {
           id="email"
           onChange={formDetailsHandler}
           value={email}
+          title="Enter your email"
         />
       </div>
 
@@ -168,66 +255,13 @@ const App = () => {
           type="tel"
           name="aadhar"
           id="aadhar"
-          pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}"
-          title="Please write as per aadhar card use(-)"
           minLength="14"
           maxLength="14"
           onChange={formDetailsHandler}
           value={aadhar}
+          pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}"
+          title="Enter your aadhar number as per aadhar card use(-)"
         />
-      </div>
-
-      <div className="container">
-        <div className="label">Education: </div>
-        <div>
-          <Input
-            type="checkbox"
-            name="education"
-            value={education}
-            id="ten"
-            onChange={formDetailsHandler}
-            className="accentColor"
-          />
-          <label htmlFor="ten" className="gapping">
-            10
-          </label>
-
-          <Input
-            type="checkbox"
-            name="education"
-            value={education}
-            id="twelve"
-            onChange={formDetailsHandler}
-            className="accentColor"
-          />
-          <label htmlFor="twelve" className="gapping">
-            12
-          </label>
-
-          <Input
-            type="checkbox"
-            name="education"
-            value={education}
-            id="ug"
-            onChange={formDetailsHandler}
-            className="accentColor"
-          />
-          <label htmlFor="ug" className="gapping">
-            UG
-          </label>
-
-          <Input
-            type="checkbox"
-            name="education"
-            value={education}
-            id="pg"
-            onChange={formDetailsHandler}
-            className="accentColor"
-          />
-          <label htmlFor="pg" className="gapping">
-            PG
-          </label>
-        </div>
       </div>
 
       <div className="container">
@@ -240,6 +274,7 @@ const App = () => {
           rows="2"
           onChange={formDetailsHandler}
           value={address}
+          title="Enter your address"
         ></textarea>
       </div>
 
