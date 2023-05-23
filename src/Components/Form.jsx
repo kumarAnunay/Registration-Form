@@ -46,6 +46,12 @@ const Form = () => {
     const field = event.target.name;
     const value = event.target.value;
 
+    if (formDetailsError) {
+      setFormDetailsError({
+        [`${field}error`]: "",
+      });
+    }
+
     setFormDetails({
       ...formDetails,
       [field]: value,
@@ -55,11 +61,11 @@ const Form = () => {
   };
 
   const formValidation = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const nameRegex = /^[a-zA-Z]+ ?([a-zA-Z]+$){1}/;
-    const numberRegex = /^[0-9]/;
-    const aadharRegex = /[0-9]{4}-[0-9]{4}-[0-9]{4}/;
+    const numberRegex = /^\d{10}$/;
+    const aadharRegex = /\d{4}-\d{4}-\d{4}/;
     const emailRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     // const addressRegex = /^[a-zA-Z0-9\s\,\''\-]*$/;
@@ -108,18 +114,18 @@ const Form = () => {
     }
 
     if (contact.length != 10 || !contact.match(numberRegex)) {
-      contactError = "Phone number length must be 10";
+      contactError = "Phone number length must contains 10 digits";
     }
 
     if (!email.match(emailRegex)) {
-      emailError = "Enter valid email address";
+      emailError = "Enter valid email address and must contain @";
     }
 
     if (!aadhar.match(aadharRegex)) {
       aadharError = "Enter aadhar number as per aadhar card, use (-)";
     }
 
-    if (address.length < 10) {
+    if (address.length < 5) {
       addressError = "Enter correct address";
     }
 
@@ -137,6 +143,37 @@ const Form = () => {
       aadharError,
       addressError,
     });
+
+    if (
+      firstNameError ||
+      lastNameError ||
+      fatherNameError ||
+      motherNameError ||
+      dobError ||
+      genderError ||
+      categoryError ||
+      contactError ||
+      emailError ||
+      aadharError ||
+      addressError
+    ) {
+      event.preventDefault();
+    } else {
+      setFormDetails({
+        firstName: "",
+        lastName: "",
+        fatherName: "",
+        motherName: "",
+        dob: "",
+        gender: "",
+        category: "",
+        contact: "",
+        email: "",
+        aadhar: "",
+        address: "",
+      });
+      alert(`Hey ${firstName} ${lastName} Form submitted successfully!!!`);
+    }
   };
 
   const {
@@ -155,7 +192,7 @@ const Form = () => {
   } = formDetails;
 
   return (
-    <div className="main">
+    <form className="main" onChange={formDetailsHandler}>
       <div className="container">
         <label htmlFor="firstName">First Name: </label>
         <div>
@@ -163,7 +200,6 @@ const Form = () => {
             type="text"
             id="firstName"
             name="firstName"
-            onChange={formDetailsHandler}
             value={firstName}
             placeholder="Enter your first name"
           />
@@ -180,7 +216,6 @@ const Form = () => {
             type="text"
             id="lastName"
             name="lastName"
-            onChange={formDetailsHandler}
             value={lastName}
             placeholder="Enter your last name"
           />
@@ -197,7 +232,6 @@ const Form = () => {
             type="text"
             name="fatherName"
             id="fatherName"
-            onChange={formDetailsHandler}
             value={fatherName}
             placeholder="Enter your father's name"
           />
@@ -214,7 +248,6 @@ const Form = () => {
             type="text"
             name="motherName"
             id="motherName"
-            onChange={formDetailsHandler}
             value={motherName}
             placeholder="Enter your mother's name"
           />
@@ -231,7 +264,6 @@ const Form = () => {
             type="date"
             name="dob"
             id="dob"
-            onChange={formDetailsHandler}
             value={dob}
             title="Enter your date-of-birth"
           />
@@ -248,7 +280,6 @@ const Form = () => {
             value="male"
             id="male"
             checked={gender === "male"}
-            onChange={formDetailsHandler}
             className="accentColor"
           />
           <label htmlFor="male" className="gapping">
@@ -261,7 +292,6 @@ const Form = () => {
             value="female"
             id="female"
             checked={gender === "female"}
-            onChange={formDetailsHandler}
             className="accentColor"
           />
           <label htmlFor="female" className="gapping">
@@ -283,7 +313,6 @@ const Form = () => {
             value="10"
             id="10"
             // checked={educationChecked}
-            onChange={formDetailsHandler}
             className="accentColor"
           />
           <label htmlFor="10" className="gapping">
@@ -296,7 +325,6 @@ const Form = () => {
             value="12"
             id="12"
             // checked={educationChecked}
-            onChange={formDetailsHandler}
             className="accentColor"
           />
           <label htmlFor="12" className="gapping">
@@ -309,7 +337,6 @@ const Form = () => {
             value="ug"
             id="ug"
             // checked={educationChecked}
-            onChange={formDetailsHandler}
             className="accentColor"
           />
           <label htmlFor="ug" className="gapping">
@@ -322,7 +349,6 @@ const Form = () => {
             value="pg"
             id="pg"
             // checked={educationChecked}
-            onChange={formDetailsHandler}
             className="accentColor"
           />
           <label htmlFor="pg" className="gapping">
@@ -338,10 +364,9 @@ const Form = () => {
             name="category"
             id="category"
             value={category}
-            onChange={formDetailsHandler}
             title="Select your category"
           >
-            <option value="null"></option>
+            <option value="null">Select option</option>
             <option value="general">General</option>
             <option value="obc">OBC</option>
             <option value="sc">SC</option>
@@ -357,12 +382,11 @@ const Form = () => {
         <label htmlFor="contact">Phone no: </label>
         <div>
           <Input
-            type="tel"
+            type="text"
             name="contact"
             id="contact"
             minLength="10"
             maxLength="10"
-            onChange={formDetailsHandler}
             value={contact}
             placeholder="Enter your phone number"
           />
@@ -379,7 +403,6 @@ const Form = () => {
             type="email"
             name="email"
             id="email"
-            onChange={formDetailsHandler}
             value={email}
             placeholder="Enter your email"
           />
@@ -388,16 +411,15 @@ const Form = () => {
       </div>
 
       <div className="container">
-        <label htmlFor="aadhar">Aadhar No.: </label>
+        <label htmlFor="aadhar">Aadhar No: </label>
         <div>
           <Input
-            type="tel"
+            type="text"
             name="aadhar"
             id="aadhar"
+            value={aadhar}
             minLength="14"
             maxLength="14"
-            onChange={formDetailsHandler}
-            value={aadhar}
             placeholder="Enter your aadhar number as per aadhar card use(-)"
           />
           {formDetailsError.aadharError && (
@@ -415,7 +437,6 @@ const Form = () => {
             maxLength="50"
             cols="30"
             rows="2"
-            onChange={formDetailsHandler}
             value={address}
             placeholder="Enter your address"
             row="5"
@@ -429,7 +450,7 @@ const Form = () => {
       <div className="btn">
         <Button onClick={formValidation}>Submit</Button>
       </div>
-    </div>
+    </form>
   );
 };
 

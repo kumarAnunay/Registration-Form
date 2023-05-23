@@ -61,6 +61,7 @@ button:active {
     box-shadow: 0 1px #f6ffde;
 }
 
+/* To change color of radio buttons */
 .accentColor {
     color: #600808;
     margin-right: 4px;
@@ -75,8 +76,14 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
+/* To hide arrows for input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 input[type="text"],
-input[type="tel"],
 input[type="email"],
 input[type="date"],
 select {
@@ -84,6 +91,7 @@ select {
     padding: 6px;
     border: 2px solid #bbb9b9;
     border-radius: 4px;
+    /* To remove input default focus border */
     outline: none;
     font-family: "Roboto Condensed";
     font-size: 14px;
@@ -102,12 +110,14 @@ textarea {
     border-radius: 4px;
     border: 2px solid #bbb9b9;
     outline: none;
+    /* To hide resize */
     resize: none;
     font-family: "Roboto Condensed";
     font-size: 14px;
     color: #333;
 }
 
+/* for placeholder */
 ::placeholder {
     font-size: 12px;
     color: grey;
