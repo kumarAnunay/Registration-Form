@@ -59,9 +59,10 @@ const Form = () => {
 
     const nameRegex = /^[a-zA-Z]+ ?([a-zA-Z]+$){1}/;
     const numberRegex = /^[0-9]/;
+    const aadharRegex = /[0-9]{4}-[0-9]{4}-[0-9]{4}/;
     const emailRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const addressRegex = /^[a-zA-Z0-9\s\,\''\-]*$/;
+    // const addressRegex = /^[a-zA-Z0-9\s\,\''\-]*$/;
 
     let firstNameError = "";
     let lastNameError = "";
@@ -110,16 +111,16 @@ const Form = () => {
       contactError = "Phone number length must be 10";
     }
 
-    if (!email.match(nameRegex)) {
+    if (!email.match(emailRegex)) {
       emailError = "Enter valid email address";
     }
 
-    if (aadhar.length != 12 || !motherName.match(aadharRegex)) {
+    if (!aadhar.match(aadharRegex)) {
       aadharError = "Enter aadhar number as per aadhar card, use (-)";
     }
 
-    if (address.match(addressRegex)) {
-      addressError = "Write your permanent address";
+    if (address.length < 10) {
+      addressError = "Enter correct address";
     }
 
     setFormDetailsError({
@@ -359,6 +360,8 @@ const Form = () => {
             type="tel"
             name="contact"
             id="contact"
+            minLength="10"
+            maxLength="10"
             onChange={formDetailsHandler}
             value={contact}
             placeholder="Enter your phone number"
@@ -395,7 +398,6 @@ const Form = () => {
             maxLength="14"
             onChange={formDetailsHandler}
             value={aadhar}
-            pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}"
             placeholder="Enter your aadhar number as per aadhar card use(-)"
           />
           {formDetailsError.aadharError && (
@@ -416,6 +418,7 @@ const Form = () => {
             onChange={formDetailsHandler}
             value={address}
             placeholder="Enter your address"
+            row="5"
           ></textarea>
           {formDetailsError.addressError && (
             <p>{formDetailsError.addressError}</p>

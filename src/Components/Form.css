@@ -8,42 +8,35 @@
 
 body {
     font-family: "Roboto Condensed";
-    background: url(../assets/background-image2.jpeg);
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background: url(../assets/background-image2.jpeg) center fixed no-repeat;
     background-size: cover;
     min-height: 100vh;
     display: grid;
-    place-content: center;
+    place-items: center;
 }
 
 .main {
     min-width: 70vw;
-    margin: 40px 0 !important;
-    background-color: #09455d;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+    margin: 2% 0;
+    background-color: #094258;
     border: 2px solid black;
-    box-shadow: 0px 0px 3px 5px black;
+    box-shadow: 0px 0px 3px 3px black;
     border-radius: 5px;
     padding: 15px;
 }
 
 .container {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    flex-wrap: wrap;
+    gap: 10px;
 }
 
 label,
 .label {
     font-size: 14px;
     font-weight: bold;
-    color: #FEF6FB;
+    color: #fef6fb;
     word-spacing: 2px;
     letter-spacing: 1px;
 }
@@ -57,19 +50,19 @@ button {
     cursor: pointer;
     padding: 8px 15px;
     border-radius: 12px;
-    background-color: rgb(96, 8, 8);
+    background-color: #600808;
     box-shadow: 0 3px #f1d0d0;
-    color: #FEF6FB;
+    color: #fef6fb;
     border: none;
 }
 
 button:active {
     transform: translate(0, 3px);
-    box-shadow: 0 1px #F6FFDE;
+    box-shadow: 0 1px #f6ffde;
 }
 
 .accentColor {
-    accent-color: black;
+    color: #600808;
     margin-right: 4px;
 }
 
@@ -88,46 +81,52 @@ input[type="email"],
 input[type="date"],
 select {
     width: 100%;
-}
-
-input,
-select {
     padding: 6px;
     border: 2px solid #bbb9b9;
     border-radius: 4px;
     outline: none;
+    font-family: "Roboto Condensed";
+    font-size: 14px;
+    color: #333;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: rgb(96, 8, 8);
+    border-color: #890b0b;
 }
 
 textarea {
-    width: -webkit-fill-available;
+    width: 100%;
+    padding: 6px;
     border-radius: 4px;
-    font-size: 16px;
     border: 2px solid #bbb9b9;
     outline: none;
+    resize: none;
+    font-family: "Roboto Condensed";
+    font-size: 14px;
+    color: #333;
+}
+
+::placeholder {
+    font-size: 12px;
+    color: grey;
 }
 
 p {
-    color: rgb(175, 15, 15);
+    color: #d91313;
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1px;
 }
 
 @media screen and (max-width: 650px) {
-
     .main {
         width: 90vw;
     }
 
     .container {
-        display: flex;
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     input,
