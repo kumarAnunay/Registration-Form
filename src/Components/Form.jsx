@@ -42,16 +42,20 @@ const Form = () => {
     addressError: "",
   });
 
+  //onChange function to set value
   const formDetailsHandler = (event) => {
     const field = event.target.name;
     const value = event.target.value;
 
-    if (formDetailsError) {
+    //This will set error msg empty when start typing again
+    if (formDetailsError[field + "Error"]) {
       setFormDetailsError({
-        [`${field}error`]: "",
+        ...formDetailsError,
+        [field + "Error"]: "",
       });
     }
 
+    //This will set the  value for the inputs
     setFormDetails({
       ...formDetails,
       [field]: value,
@@ -60,9 +64,12 @@ const Form = () => {
     console.log(field, " : ", value);
   };
 
+  //onClick validation
   const formValidation = (event) => {
-    // event.preventDefault();
+    //This will cancels the default action
+    event.preventDefault();
 
+    //Regex patterns
     const nameRegex = /^[a-zA-Z]+ ?([a-zA-Z]+$){1}/;
     const numberRegex = /^\d{10}$/;
     const aadharRegex = /\d{4}-\d{4}-\d{4}/;
@@ -70,18 +77,19 @@ const Form = () => {
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     // const addressRegex = /^[a-zA-Z0-9\s\,\''\-]*$/;
 
-    let firstNameError = "";
-    let lastNameError = "";
-    let fatherNameError = "";
-    let motherNameError = "";
-    let dobError = "";
-    let genderError = "";
-    // let educationError = "";
-    let categoryError = "";
-    let contactError = "";
-    let emailError = "";
-    let aadharError = "";
-    let addressError = "";
+    let {
+      firstNameError,
+      lastNameError,
+      fatherNameError,
+      motherNameError,
+      dobError,
+      genderError,
+      categoryError,
+      contactError,
+      emailError,
+      aadharError,
+      addressError,
+    } = formDetailsError;
 
     if (firstName.length < 2 || !firstName.match(nameRegex)) {
       firstNameError = "Only alphabets and at least  2 characters";
@@ -157,7 +165,7 @@ const Form = () => {
       aadharError ||
       addressError
     ) {
-      event.preventDefault();
+      return;
     } else {
       setFormDetails({
         firstName: "",
@@ -192,7 +200,7 @@ const Form = () => {
   } = formDetails;
 
   return (
-    <form className="main" onChange={formDetailsHandler}>
+    <form className="main">
       <div className="container">
         <label htmlFor="firstName">First Name: </label>
         <div>
@@ -202,6 +210,7 @@ const Form = () => {
             name="firstName"
             value={firstName}
             placeholder="Enter your first name"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.firstNameError && (
             <p>{formDetailsError.firstNameError}</p>
@@ -218,6 +227,7 @@ const Form = () => {
             name="lastName"
             value={lastName}
             placeholder="Enter your last name"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.lastNameError && (
             <p>{formDetailsError.lastNameError}</p>
@@ -234,6 +244,7 @@ const Form = () => {
             id="fatherName"
             value={fatherName}
             placeholder="Enter your father's name"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.fatherNameError && (
             <p>{formDetailsError.fatherNameError}</p>
@@ -250,6 +261,7 @@ const Form = () => {
             id="motherName"
             value={motherName}
             placeholder="Enter your mother's name"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.motherNameError && (
             <p>{formDetailsError.motherNameError}</p>
@@ -266,6 +278,7 @@ const Form = () => {
             id="dob"
             value={dob}
             title="Enter your date-of-birth"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.dobError && <p>{formDetailsError.dobError}</p>}
         </div>
@@ -280,7 +293,7 @@ const Form = () => {
             value="male"
             id="male"
             checked={gender === "male"}
-            className="accentColor"
+            onChange={formDetailsHandler}
           />
           <label htmlFor="male" className="gapping">
             Male
@@ -292,7 +305,7 @@ const Form = () => {
             value="female"
             id="female"
             checked={gender === "female"}
-            className="accentColor"
+            onChange={formDetailsHandler}
           />
           <label htmlFor="female" className="gapping">
             Female
@@ -365,6 +378,7 @@ const Form = () => {
             id="category"
             value={category}
             title="Select your category"
+            onChange={formDetailsHandler}
           >
             <option value="null">Select option</option>
             <option value="general">General</option>
@@ -389,6 +403,7 @@ const Form = () => {
             maxLength="10"
             value={contact}
             placeholder="Enter your phone number"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.contactError && (
             <p>{formDetailsError.contactError}</p>
@@ -405,6 +420,7 @@ const Form = () => {
             id="email"
             value={email}
             placeholder="Enter your email"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.emailError && <p>{formDetailsError.emailError}</p>}
         </div>
@@ -421,6 +437,7 @@ const Form = () => {
             minLength="14"
             maxLength="14"
             placeholder="Enter your aadhar number as per aadhar card use(-)"
+            onChange={formDetailsHandler}
           />
           {formDetailsError.aadharError && (
             <p>{formDetailsError.aadharError}</p>
@@ -440,6 +457,7 @@ const Form = () => {
             value={address}
             placeholder="Enter your address"
             row="5"
+            onChange={formDetailsHandler}
           ></textarea>
           {formDetailsError.addressError && (
             <p>{formDetailsError.addressError}</p>
