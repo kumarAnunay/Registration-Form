@@ -451,9 +451,7 @@ const Form = () => {
           <textarea
             name="address"
             id="address"
-            maxLength="50"
             cols="30"
-            rows="2"
             value={address}
             placeholder="Enter your address"
             row="5"

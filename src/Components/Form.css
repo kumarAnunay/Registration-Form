@@ -49,9 +49,9 @@ label,
 button {
     cursor: pointer;
     padding: 8px 15px;
-    border-radius: 12px;
+    border-radius: 10px;
     background-color: #600808;
-    box-shadow: 0 3px #f1d0d0;
+    box-shadow: 0 3px #fad0d0;
     color: #fef6fb;
     border: none;
 }
@@ -63,7 +63,7 @@ button:active {
 
 /* To change color of radio buttons */
 input[type="radio"] {
-    accent-color: #600808 !important;
+    accent-color: #d91313 !important;
     margin-right: 4px;
 }
 
@@ -89,10 +89,8 @@ input[type="date"],
 select {
     width: 100%;
     padding: 6px;
-    border: 2px solid #bbb9b9;
+    border: 1px solid #bbb9b9;
     border-radius: 4px;
-    /* To remove input default focus border */
-    outline: none;
     font-family: "Roboto Condensed";
     font-size: 14px;
     color: #333;
@@ -101,7 +99,8 @@ select {
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #890b0b;
+    /* For input borders */
+    outline: 3px solid #890b0b;
 }
 
 textarea {
