@@ -1,4 +1,4 @@
-import { Form } from "./Components/form";
+import { Form } from "./Components/Form";
 
 const App = () => {
   return <Form />;
