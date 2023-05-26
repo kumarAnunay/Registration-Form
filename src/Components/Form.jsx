@@ -70,8 +70,8 @@ const Form = () => {
     event.preventDefault();
 
     //Regex patterns
-    const nameRegex = /^[a-zA-Z]+ ?([a-zA-Z]+$){1}/;
-    const numberRegex = /^\d{10}$/;
+    const nameRegex = /^[A-Za-z]+ ?$/;
+    const numberRegex = /[9876][0-9]{9}/;
     const aadharRegex = /\d{4}-\d{4}-\d{4}/;
     const emailRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -91,20 +91,20 @@ const Form = () => {
       addressError,
     } = formDetailsError;
 
-    if (firstName.length < 2 || !firstName.match(nameRegex)) {
-      firstNameError = "Only alphabets and at least  2 characters";
+    if (firstName.length < 3 || !firstName.match(nameRegex)) {
+      firstNameError = "Enter your first name & must contain  only alphabets";
     }
 
-    if (lastName.length < 2 || !lastName.match(nameRegex)) {
-      lastNameError = "Only alphabets and at least 2 characters";
+    if (lastName.length < 3 || !lastName.match(nameRegex)) {
+      lastNameError = "Enter your last name & must contain  only alphabets";
     }
 
-    if (fatherName.length < 2 || !fatherName.match(nameRegex)) {
-      fatherNameError = "Only alphabets and at least 2 characters";
+    if (fatherName.length < 3 || !fatherName.match(nameRegex)) {
+      fatherNameError = "Enter your last name & must contain only alphabets";
     }
 
-    if (motherName.length < 2 || !motherName.match(nameRegex)) {
-      motherNameError = "Only alphabets and at least 2 characters";
+    if (motherName.length < 3 || !motherName.match(nameRegex)) {
+      motherNameError = " Enter your last name & must contain only alphabets";
     }
 
     if (!dob) {
@@ -112,7 +112,7 @@ const Form = () => {
     }
 
     if (!gender) {
-      genderError = "Gender is required";
+      genderError = "Select Gender";
     }
 
     //education
@@ -121,8 +121,9 @@ const Form = () => {
       categoryError = "Select any one category";
     }
 
-    if (contact.length != 10 || !contact.match(numberRegex)) {
-      contactError = "Phone number length must contains 10 digits";
+    if (!contact.match(numberRegex)) {
+      contactError =
+        "Phone number length must contains 10 digits and only numbers allowed";
     }
 
     if (!email.match(emailRegex)) {
@@ -134,7 +135,7 @@ const Form = () => {
     }
 
     if (address.length < 5) {
-      addressError = "Enter correct address";
+      addressError = "Enter your address";
     }
 
     setFormDetailsError({
