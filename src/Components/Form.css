@@ -8,8 +8,9 @@
 
 body {
     font-family: "Roboto Condensed";
-    background: url(../assets/background-image2.jpeg) center fixed no-repeat;
-    background-size: cover;
+    /* background: url(../assets/background-image2.jpeg) center fixed no-repeat;
+    background-size: cover; */
+    background-color: #16a085;
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -18,7 +19,7 @@ body {
 .main {
     min-width: 70vw;
     margin: 2% 0;
-    background-color: #0a4e68;
+    background-color: #003b52;
     border: 2px solid black;
     box-shadow: 0px 0px 3px 3px black;
     border-radius: 5px;
